@@ -7,8 +7,24 @@
   <version>0.0.1</version>
   <packaging>war</packaging>
   <name>My Web Project</name>
+  <scm>
+    <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
+    <tag>WebProject-0.0.1</tag>
+    <url>https://github.com/guptan39/Webproject</url>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>packagecloud.release</id>
+      <url>packagecloud+https://packagecloud.io/neerajgupta/release</url>
+    </repository>
+    <snapshotRepository>
+      <id>packagecloud.snapshot</id>
+      <url>packagecloud+https://packagecloud.io/neerajgupta/snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
   <properties>
-    <revision>0.0.1</revision>
+    <project.scm.id>github</project.scm.id>
+    <revision>0.0.1-SNAPSHOT</revision>
     <my.filter.value>hello</my.filter.value>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
   </properties>
@@ -35,12 +51,6 @@
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
       <version>1.2.0.Final</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.gupta.future.business</groupId>
-      <artifactId>business</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

@@ -56,6 +56,19 @@
 
 
 	<build>
+	
+	
+		<extensions>
+			<!-- In order to publish the artifact to packagecloud repository, this 
+				extension is required -->
+			<extension>
+				<groupId>io.packagecloud.maven.wagon</groupId>
+				<artifactId>maven-packagecloud-wagon</artifactId>
+				<version>0.0.6</version>
+			</extension>
+		</extensions>
+		
+		
 		<plugins>
 		
 			<!-- Overridden the compiler plugin, so that compiler source and targer version would be 1.8 
