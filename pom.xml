@@ -11,8 +11,15 @@
 	<properties>
 		<my.filter.value>hello</my.filter.value>
 		<mapstruct.version>1.2.0.Final</mapstruct.version>
-		<revision>0.0.1</revision>
+		<revision>0.0.1-SNAPSHOT</revision>
+		<project.scm.id>github</project.scm.id>
 	</properties>
+	
+	<scm>
+        <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
+        <url>https://github.com/guptan39/Webproject</url>
+        <tag>HEAD</tag>
+    </scm>
 
 	<dependencies>
 
@@ -177,6 +184,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
 			</plugin>
             
 		</plugins> 
