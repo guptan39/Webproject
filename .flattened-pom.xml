@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ninju.web</groupId>
   <artifactId>WebProject</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <packaging>war</packaging>
   <name>My Web Project</name>
   <scm>
     <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
-    <tag>WebProject-0.0.1</tag>
+    <tag>WebProject-0.0.2</tag>
     <url>https://github.com/guptan39/Webproject</url>
   </scm>
   <distributionManagement>
