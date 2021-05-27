@@ -2,21 +2,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ninju.web</groupId>
 	<artifactId>WebProject</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>My Web Project</name>  
 
 	<properties>
 		<my.filter.value>hello</my.filter.value>
 		<mapstruct.version>1.2.0.Final</mapstruct.version>
-		<revision>0.0.1-SNAPSHOT</revision>
 		<project.scm.id>github</project.scm.id>
 	</properties>
 	
 	<scm>
         <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
         <url>https://github.com/guptan39/Webproject</url>
-        <tag>HEAD</tag>
     </scm>
 
 	<dependencies>
