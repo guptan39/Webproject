@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ninju.web</groupId>
+	<artifactId>WebProject</artifactId>
+	<version>${revision}</version>
+	<packaging>war</packaging>
+	<name>My Web Project</name>  
+
+	<properties>
+		<my.filter.value>hello</my.filter.value>
+		<mapstruct.version>1.2.0.Final</mapstruct.version>
+		<revision>0.0.1</revision>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.0.6.Final</version>
+		</dependency>
+		
+		<!-- Dependencies for converting json to java class -->
+		<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.gupta.future.business</groupId>
+            <artifactId>business</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+		
+			<!-- Overridden the compiler plugin, so that compiler source and targer version would be 1.8 
+			Also, if an interface constains @Mapper annotation, then a class should be created which implements that interface and provides implementation
+			of the methods-->	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Overridden the clean plugin, so that during the initialize phase of default lifecycle, the clean goal of the maven-clean-plugin would run -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>auto-clean</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- Plugin for converting xsd code to java class, by default this plugin will look for xsd file inside src/main/resources folder,
+			and will generate java classes inside  target/generate-sources/xjc folder, we can configure it, if required.
+			By default, this plugin goal is bound to generate-sources phase of the default lifecycle-->
+			<plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
+                <executions>
+                    <execution>
+                    	<id>generate-stubs-from-xsd</id>
+                    	<phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Plugin for converting json schema code to java code, we have configured this plugin to look for json schema file inside src/main/resources/schema folder,
+			and will generate java classes inside  target/generate-sources/java-gen folder, we can configure it, if required.
+			https://joelittlejohn.github.io/jsonschema2pojo/site/0.5.1/generate-mojo.html 
+			By default, this plugin goal is bound to generate-sources phase of the default lifecycle-->
+			
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.5.1</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <targetPackage>guru.springframework.model</targetPackage>
+                    <useCommonsLang3>true</useCommonsLang3>
+                </configuration>
+                <executions>
+                    <execution>
+                    	<id>generate-stubs-from-json-schema</id>
+ 						<phase>generate-sources</phase>                   	
+                    	<goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.2.2</version>
+				<configuration>
+					<flattenMode>bom</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            
+		</plugins> 
+
+		<resources> 
+			<resource> 
+				<directory>C:\Users\guptan39\OneDrive - Dell Technologies\Documents\workspaces\spring_workspace\WebProject\src\main\resources</directory> 
+				<filtering>true</filtering> 
+			</resource> 
+		</resources>
+
+		<!-- Name of the war file generated during package phase -->
+		<finalName>mywar</finalName>
+		
+	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>packagecloud.release</id>
+			<url>packagecloud+https://packagecloud.io/neerajgupta/release</url>
+		</repository>
+		<snapshotRepository>
+			<id>packagecloud.snapshot</id>
+			<url>packagecloud+https://packagecloud.io/neerajgupta/snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+		
+</project>
