@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ninju.web</groupId>
 	<artifactId>WebProject</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>My Web Project</name>  
 
@@ -15,8 +15,7 @@
 	<scm>
         <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
         <url>https://github.com/guptan39/Webproject</url>
-      <tag>WebProject-0.0.1</tag>
-  </scm>
+    </scm>
 
 	<dependencies>
 
@@ -165,7 +164,7 @@
                 </executions>
             </plugin>
             
-            <plugin>
+            <!-- <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
 				<version>1.2.2</version>
@@ -188,7 +187,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
