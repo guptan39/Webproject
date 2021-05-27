@@ -1,10 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ninju.web</groupId>
 	<artifactId>WebProject</artifactId>
-	<version>${revision}</version>
+	<version>0.0.1</version>
 	<packaging>war</packaging>
 	<name>My Web Project</name>  
 
@@ -18,7 +16,7 @@
 	<scm>
         <developerConnection>scm:git:https://github.com/guptan39/Webproject.git</developerConnection>
         <url>https://github.com/guptan39/Webproject</url>
-        <tag>HEAD</tag>
+        <tag>WebProject-0.0.1</tag>
     </scm>
 
 	<dependencies>
@@ -53,12 +51,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.gupta.future.business</groupId>
-            <artifactId>business</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 	</dependencies>
 
